@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="beatoraja-ime-injector:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/beatoraja_ime_injector_jar</output-path>
+    <root id="archive" name="beatoraja-ime-injector.jar">
+      <element id="module-output" name="beatoraja-ime-injector" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/asm-9.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
