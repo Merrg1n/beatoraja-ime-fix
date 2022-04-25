@@ -9,6 +9,7 @@ public class IMEManager {
 
     public native static long associateContext(long hwnd, long himc);
 
+    public native static boolean isKeyPressed(int key);
     private static IMEManager instance = null;
 
     public static IMEManager getInstance() {
@@ -61,4 +62,5 @@ public class IMEManager {
         this.state = true;
         System.out.println("[IME fix] IME enabled.");
     }
+
 }

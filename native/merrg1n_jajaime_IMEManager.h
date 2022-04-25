@@ -7,21 +7,29 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-/*
- * Class:     merrg1n_jajaime_IMEManager
- * Method:    getHWND
- * Signature: (Ljava/lang/String;)J
- */
-JNIEXPORT jlong JNICALL Java_merrg1n_jajaime_IMEManager_getHWND
-  (JNIEnv *, jclass, jstring);
+	/*
+	 * Class:     merrg1n_jajaime_IMEManager
+	 * Method:    getHWND
+	 * Signature: (Ljava/lang/String;)J
+	 */
+	JNIEXPORT jlong JNICALL Java_merrg1n_jajaime_IMEManager_getHWND
+	(JNIEnv*, jclass, jstring);
 
-/*
- * Class:     merrg1n_jajaime_IMEManager
- * Method:    associateContext
- * Signature: (JJ)J
- */
-JNIEXPORT jlong JNICALL Java_merrg1n_jajaime_IMEManager_associateContext
-  (JNIEnv *, jclass, jlong, jlong);
+	/*
+	 * Class:     merrg1n_jajaime_IMEManager
+	 * Method:    associateContext
+	 * Signature: (JJ)J
+	 */
+	JNIEXPORT jlong JNICALL Java_merrg1n_jajaime_IMEManager_associateContext
+	(JNIEnv*, jclass, jlong, jlong);
+
+	/*
+	 * Class:     merrg1n_jajaime_IMEManager
+	 * Method:    isKeyPressed
+	 * Signature: (I)Z
+	 */
+	JNIEXPORT jboolean JNICALL Java_merrg1n_jajaime_IMEManager_isKeyPressed
+	(JNIEnv*, jclass, jint);
 
 #ifdef __cplusplus
 }
