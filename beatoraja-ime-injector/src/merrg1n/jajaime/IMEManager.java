@@ -1,6 +1,5 @@
 package merrg1n.jajaime;
 
-
 public class IMEManager {
     static {
         System.loadLibrary("BeatorajaIMEFixNative");
@@ -14,6 +13,13 @@ public class IMEManager {
 
     public static IMEManager getInstance() {
         return instance;
+    }
+
+    public static boolean isGdxKeyPressed(int key) {
+//        System.out.println(key);
+        boolean a = isKeyPressed(KeycodeManager.gdxKeyToVirtKey[key]);
+//        if(a) System.out.println(key);
+        return a;
     }
 
     public static void create(String title) {

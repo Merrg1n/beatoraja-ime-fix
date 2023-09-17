@@ -2,7 +2,7 @@
   <library name="ow2.asm" type="repository">
     <properties maven-id="org.ow2.asm:asm:LATEST" />
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/asm-9.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/asm-9.5.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

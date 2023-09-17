@@ -60,7 +60,7 @@ public class MainControllerTransformer implements ClassFileTransformer {
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
         if ("bms/player/beatoraja/MainController".equals(className)) {
-            System.out.println("[IME Fix] Found MainController, start transform.");
+            System.out.println("[IME Fix] Found " + className + " , start transform.");
             ClassReader cr = new ClassReader(classfileBuffer);
             ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
             ClassVisitor cv = new ClassVisitor(ASM9, cw) {
