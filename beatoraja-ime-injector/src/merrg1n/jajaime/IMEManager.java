@@ -16,10 +16,12 @@ public class IMEManager {
     }
 
     public static boolean isGdxKeyPressed(int key) {
-//        System.out.println(key);
-        boolean a = isKeyPressed(KeycodeManager.gdxKeyToVirtKey[key]);
-//        if(a) System.out.println(key);
-        return a;
+        // avoid accepting keyboard input while minimized
+        boolean isMinimized = false;
+        if (IMEManager.instance != null)
+            isMinimized = !IMEManager.instance.getState();
+
+        return isMinimized && isKeyPressed(KeycodeManager.gdxKeyToVirtKey[key]);
     }
 
     public static void create(String title) {

@@ -46,11 +46,11 @@ public class KeycodeManager {
             }
 
             System.out.println("[IME fix] initKeymap success.");
-            for (int i = 0; i < 255; i++) {
-                System.out.print(gdxKeyToVirtKey[i]);
-                System.out.print(',');
-            }
-            System.out.print('\n');
+//            for (int i = 0; i < 255; i++) {
+//                System.out.print(gdxKeyToVirtKey[i]);
+//                System.out.print(',');
+//            }
+//            System.out.print('\n');
 
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             System.err.println("[IME fix] initKeymap fail.");
