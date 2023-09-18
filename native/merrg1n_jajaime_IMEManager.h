@@ -31,6 +31,8 @@ extern "C" {
 	JNIEXPORT jboolean JNICALL Java_merrg1n_jajaime_IMEManager_isKeyPressed
 	(JNIEnv*, jclass, jint);
 
+	JNIEXPORT jboolean JNICALL JavaCritical_merrg1n_jajaime_IMEManager_isKeyPressed
+	(jint);
 #ifdef __cplusplus
 }
 #endif

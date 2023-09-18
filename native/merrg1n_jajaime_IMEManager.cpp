@@ -17,11 +17,21 @@ JNIEXPORT jlong JNICALL Java_merrg1n_jajaime_IMEManager_associateContext(JNIEnv*
 	return (jlong)ImmAssociateContext((HWND)hwnd, (HIMC)himc);
 }
 
-JNIEXPORT jboolean JNICALL Java_merrg1n_jajaime_IMEManager_isKeyPressed(JNIEnv* env, jclass clazz, jint keycode)
+bool isKeyPressed(int keycode)
 {
 	if (keycode <= 0 || keycode > 255)
 		return false;
 	if (GetAsyncKeyState(keycode) & 0x8000)
 		return true;
 	return false;
+}
+
+JNIEXPORT jboolean JNICALL Java_merrg1n_jajaime_IMEManager_isKeyPressed(JNIEnv* env, jclass clazz, jint keycode)
+{
+	return isKeyPressed(keycode);
+}
+
+JNIEXPORT jboolean JNICALL JavaCritical_merrg1n_jajaime_IMEManager_isKeyPressed(jint keycode)
+{
+	return isKeyPressed(keycode);
 }
