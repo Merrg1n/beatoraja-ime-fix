@@ -9,6 +9,7 @@ import org.objectweb.asm.Opcodes;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
+import java.util.Objects;
 
 import static org.objectweb.asm.Opcodes.ASM9;
 
@@ -57,6 +58,21 @@ public class MainControllerTransformer implements ClassFileTransformer {
         };
     }
 
+    public MethodVisitor transform_render(MethodVisitor old) {
+        return new MethodVisitor(ASM9, old) {
+            @Override
+            public void visitMethodInsn(int opcode, String owner, String name, String descriptor, boolean isInterface) {
+                if (Objects.equals(owner, "bms/player/beatoraja/Config") &&
+                    Objects.equals(name, "setDisplaymode") &&
+                    Objects.equals(descriptor, "(Lbms/player/beatoraja/Config$DisplayMode;)V")) {
+                    super.visitMethodInsn(Opcodes.INVOKESTATIC, "merrg1n/jajaime/IMEManager", "getInstance", "()Lmerrg1n/jajaime/IMEManager;", false);
+                    super.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "merrg1n/jajaime/IMEManager", "refresh", "()V", false);
+                }
+                super.visitMethodInsn(opcode, owner, name, descriptor, isInterface);
+            }
+        };
+    }
+
     @Override
     public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
         if ("bms/player/beatoraja/MainController".equals(className)) {
@@ -79,6 +95,8 @@ public class MainControllerTransformer implements ClassFileTransformer {
                     if ("resume".equals(name))
                         return transform_resume(old);
 
+                    if ("render".equals(name))
+                        return transform_render(old);
                     return old;
                 }
             };

@@ -2,4 +2,3 @@ Manifest-Version: 1.0
 Can-Redefine-Classes: true
 Can-Retransform-Classes: true
 Premain-Class: merrg1n.jajaime.PreMain
-Class-Path: asm-9.2.jar

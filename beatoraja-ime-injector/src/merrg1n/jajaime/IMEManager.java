@@ -24,17 +24,11 @@ public class IMEManager {
         return isMinimized && isKeyPressed(KeycodeManager.gdxKeyToVirtKey[key]);
     }
 
+
     public static void create(String title) {
         System.out.println("[IME fix] get window title:" + title);
 
-        long hwnd = getHWND(title);
-        if (hwnd == 0) {
-            System.out.println("[IME fix] fail to get hwnd.");
-            System.exit(-1);
-        }
-
-        System.out.println("[IME fix] get hwnd successfully.");
-        instance = new IMEManager(hwnd);
+        instance = new IMEManager(title);
     }
 
     public static void dispose() {
@@ -42,14 +36,15 @@ public class IMEManager {
         instance = null;
     }
 
-    private IMEManager(long hwnd) {
+    private IMEManager(String title) {
         System.out.println("[IME fix] IMEManager Init!");
-        this.hwnd = hwnd;
-        this.himc = associateContext(hwnd, 0);
-        this.state = false;
+        this.title = title;
+        this.updateHWND();
+        this.disable();
     }
 
-    private final long hwnd;
+    private final String title;
+    private long hwnd;
     private long himc;
     private boolean state;
 
@@ -69,6 +64,21 @@ public class IMEManager {
         associateContext(hwnd, this.himc);
         this.state = true;
         System.out.println("[IME fix] IME enabled.");
+    }
+
+    private void updateHWND() {
+        long hwnd = getHWND(this.title);
+        if (hwnd == 0) {
+            throw new RuntimeException("fail to get hwnd");
+        }
+        this.hwnd = hwnd;
+        System.out.println("[IME fix] get hwnd successfully.");
+    }
+
+    public void refresh() {
+        System.out.println("[IME fix] display mode changed, rebind hwnd.");
+        this.updateHWND();
+        this.disable();
     }
 
 }
